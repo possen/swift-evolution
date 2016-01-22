@@ -30,7 +30,7 @@ default:
 }
 ```
   
-The syntax above does not elegantly express our intent as the `switch` statement is designed for “flow control”.  Aside from being limited to choosing a single value our example requires no “flow control”.  In addition, the ability to execute unrelated statements inside the switch statement makes it harder prove correctness of the algorithm.
+The syntax above does not elegantly express our intent as the `switch` statement is designed for “flow control”.  Aside from being limited to choosing a single value our example requires no “flow control”.  In addition, the ability to execute unrelated statements inside the switch statement makes it harder prove correctness of the algorithm.  Finally, type automatic type inference can't be used to determine the type of the assigned constant which feel unsatisfactory. 
 
 Alternatives to using `switch` do exist but are unsatisfactory.  A `Dictionary`, for example, increases cognitive load (i.e. requires `Hashable` keys and returns an optional).  This makes it less clear as to what function is being performed.  `Dictionary` also lacks exhautiveness or uniqueness checks which may result in unexpected runtime exceptions.
 

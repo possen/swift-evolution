@@ -194,6 +194,8 @@ let weightKg = weightTroy.reduce(0.00) {
 }
 ```
 
+Many other alternatives, too numerous to list here, were considered in depth, please see thread for the many ideas tried.
+
 ## Out of Scope
 
 Named partial functions are out of scope for this proposal. 

@@ -17,7 +17,7 @@ There is currently no elegant methodology within Swift closures to conditionally
 
 The following example where a string is mapped to an enum case is indicative of the problem:
 
-```
+``` swift
 let str:String
 	
 switch state {
@@ -43,7 +43,7 @@ The syntax is based on familiar `case`/`default` clauses common to switch statem
 
 Any function which accepts a closure would also be able to accept a closure composed of partial functions defined using `case`/`default` syntax used in switch-case.  Each `case` or `default`is considered a partial function since it defines the closure for a subset of values.  
 
-```
+``` swift
 public enum Trade {
     case Buy(quantity: Double, price: Double)
     case Sell(quantity: Double, price: Double)
@@ -67,7 +67,7 @@ let commissions = trades.map {
 
 Each of the case clauses represent a partial closure / partial function.  As with a total closure the case result may be specified with the optional `return` clause.  For example:
 
-```
+``` swift
 case .Buy(let quantity, let price) where quantity * price > 10000:
     let vipCommissionRate = calculateCommissionRate(...)
     return quantity * price * vipCommissionRate / 100
@@ -76,7 +76,7 @@ case .Buy(let quantity, let price) where quantity * price > 10000:
 Alternative grammar `cases`/`default` which is a specialized version that can be used for the simplest and the most consise use case.  If the use case is a simple definition of mapping of values then `cases` can be used to define multiple  case clauses. `cases` clause may not be used with a `where` clause.  The purpose of allowing `cases` as syntatic sugar for multiple `case` clauses is to allow a less verbose option for use cases where the developer would use a multi-case ternary expression.
   
 
-```
+``` swift
 let col = [1,5,7,9]
 
 let newCol = col.map {
@@ -88,7 +88,7 @@ let newCol = col.map {
 
 The following global `match` function would provide switch-expression functionality to all types:  
 
-```
+``` swift
 func match<T,U>(x: T, @noescape mapping: T -> U) -> U {
     return mapping(x)
 }
@@ -96,7 +96,7 @@ func match<T,U>(x: T, @noescape mapping: T -> U) -> U {
 
 The `match` function would be used similar to the following:
 
-```
+``` swift
 let n = 5
 
 let s = match(n) {
@@ -108,7 +108,7 @@ let s = match(n) {
 
 Functions such as `reduce` that receive two or more values must be enclosed in brackets `(x, y)` to otherwise the parser would likely have trouble distinquishing between comma delimited lists of values which are currently allowed as a single case.
 
-```
+``` swift
 public enum Troy {
     case Pound(Int)
     case Ounce(Int)
@@ -171,7 +171,7 @@ There were various specialized multi-ternary suggestions made as a replacement/e
 
 The only other alternative considered that was a generalized version similar to the proposal above was basically the same but using `in` instead of `:` because we were defining partial functions and not a `switch` command.  The overwelming sentiment was in favour of using exactly the same syntax as the `switch` command where possible.
 
-```
+``` swift
 public enum Troy {
     case Pound(Int)
     case Ounce(Int)
